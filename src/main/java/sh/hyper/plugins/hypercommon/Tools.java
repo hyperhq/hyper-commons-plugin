@@ -65,11 +65,17 @@ public class Tools extends Plugin implements Describable<Tools> {
             secretKey = formData.getString("secretKey");
 
             save();
-            return super.configure(req,formData);
+
+            return super.configure(req, formData);
         }
 
-        public String getAccessId() { return accessId; }
-        public String getSecretKey() { return secretKey; }
+        public String getAccessId() {
+            return accessId;
+        }
+
+        public String getSecretKey() {
+            return secretKey;
+        }
 
         @Override
         public String getDisplayName() {
@@ -78,15 +84,11 @@ public class Tools extends Plugin implements Describable<Tools> {
 
         //save credential
         public FormValidation doSaveCredential(@QueryParameter("accessId") final String accessId,
-                                           @QueryParameter("secretKey") final String secretKey) throws IOException, ServletException {
-            this.accessId = accessId;
-            this.secretKey = secretKey;
-
-            //save();
+                                               @QueryParameter("secretKey") final String secretKey) throws IOException, ServletException {
             try {
                 String jsonStr = "{\"clouds\": {" +
                         "\"tcp://us-west-1.hyper.sh:443\": {" +
-                    "\"accesskey\": " + "\"" + accessId + "\"," +
+                        "\"accesskey\": " + "\"" + accessId + "\"," +
                         "\"secretkey\": " + "\"" + secretKey + "\"" +
                         "}" +
                         "}" +
@@ -107,8 +109,8 @@ public class Tools extends Plugin implements Describable<Tools> {
                         e.printStackTrace();
                     }
                 } else {
-                    File hyperPath = new File(jenkinsHome +"/.hyper");
-                   try {
+                    File hyperPath = new File(jenkinsHome + "/.hyper");
+                    try {
                         if (!hyperPath.exists()) {
                             hyperPath.mkdir();
                         }
@@ -118,14 +120,13 @@ public class Tools extends Plugin implements Describable<Tools> {
                     configPath = jenkinsHome + "/.hyper/config.json";
                 }
 
-
                 File config = new File(configPath);
-                if(!config.exists()){
+                if (!config.exists()) {
                     try {
                         config.createNewFile();
                     } catch (IOException e) {
-                       e.printStackTrace();
-                   }
+                        e.printStackTrace();
+                    }
                 }
 
                 try {
@@ -133,19 +134,18 @@ public class Tools extends Plugin implements Describable<Tools> {
                     writer.write(jsonStr);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }finally {
+                } finally {
                     try {
-                        if(writer != null){
+                        if (writer != null) {
                             writer.close();
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-
                 return FormValidation.ok("Credentials saved!");
             } catch (Exception e) {
-                return FormValidation.error("Saving credentials error : "+e.getMessage());
+                return FormValidation.error("Saving credentials error : " + e.getMessage());
             }
         }
 
@@ -160,19 +160,19 @@ public class Tools extends Plugin implements Describable<Tools> {
 
                 String jenkinsHome = System.getenv("HUDSON_HOME");
 
-               if (jenkinsHome == null) {
+                if (jenkinsHome == null) {
                     hyperCliPath = System.getenv("HOME") + "/hyper";
-               } else {
-                   File hyperPath = new File(jenkinsHome +"/bin");
-                   try {
-                       if (!hyperPath.exists()) {
-                           hyperPath.mkdir();
-                       }
-                   } catch (SecurityException e) {
-                       e.printStackTrace();
-                   }
-                   hyperCliPath = jenkinsHome + "/bin/hyper";
-               }
+                } else {
+                    File hyperPath = new File(jenkinsHome + "/bin");
+                    try {
+                        if (!hyperPath.exists()) {
+                            hyperPath.mkdir();
+                        }
+                    } catch (SecurityException e) {
+                        e.printStackTrace();
+                    }
+                    hyperCliPath = jenkinsHome + "/bin/hyper";
+                }
 
                 FileOutputStream os = new FileOutputStream(hyperCliPath);
                 byte[] buffer = new byte[4 * 1024];
@@ -193,7 +193,7 @@ public class Tools extends Plugin implements Describable<Tools> {
 
                 return FormValidation.ok("Hypercli downloaded!");
             } catch (Exception e) {
-                return FormValidation.error("Downloading Hypercli error : "+e.getMessage());
+                return FormValidation.error("Downloading Hypercli error : " + e.getMessage());
             }
         }
     }
