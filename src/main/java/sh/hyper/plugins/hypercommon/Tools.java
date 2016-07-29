@@ -39,6 +39,7 @@ import javax.servlet.ServletException;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author <a href="mailto:xlgao@zju.edu.cn">Xianglin Gao</a>
@@ -146,6 +147,27 @@ public class Tools extends Plugin implements Describable<Tools> {
                 return FormValidation.ok("Credentials saved!");
             } catch (Exception e) {
                 return FormValidation.error("Saving credentials error : " + e.getMessage());
+            }
+        }
+
+        public FormValidation doTestConnection() throws IOException, ServletException {
+            try {
+                Process hypercli = null;
+                try {
+                    String command = "hyper info";
+                    Runtime runtime = Runtime.getRuntime();
+                    hypercli = runtime.exec(command);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                hypercli.waitFor(10, TimeUnit.SECONDS);
+                if (hypercli.exitValue() == 0) {
+                    return FormValidation.ok("connection test succeeded!");
+                } else {
+                    return FormValidation.ok("connection test failed!");
+                }
+            } catch (Exception e) {
+                return FormValidation.error("connection test error : " + e.getMessage());
             }
         }
 
