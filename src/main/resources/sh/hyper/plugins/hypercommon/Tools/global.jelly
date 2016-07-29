@@ -24,6 +24,11 @@
       <f:validateButton
               title="${%Save credential}" progress="${%saving...}"
               method="saveCredential" with="secretKey,accessId" />
+
+      <f:validateButton
+              title="${%Test connection}" progress="${%testing...}"
+              method="testConnection"/>
+
   </f:section>
 
   <f:section title="Hypercli Install">
