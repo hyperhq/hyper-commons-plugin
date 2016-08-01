@@ -160,6 +160,7 @@ public class Tools extends Plugin implements Describable<Tools> {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 hypercli.waitFor(10, TimeUnit.SECONDS);
                 if (hypercli.exitValue() == 0) {
                     return FormValidation.ok("connection test succeeded!");
