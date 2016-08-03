@@ -1,14 +1,14 @@
 # hyper-commons-plugin
 =======================
 
-This plugin provides common functions for integrate Jenkins with Hyper_.
+This plugin provides common functionality for integrating Jenkins with Hyper_.
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Features](#features)
 - [Use plugin](#use-plugin)
 	- [Prerequisites](#prerequisites)
-	- [Install plugin by manually](#install-plugin-by-manually)
+	- [Install plugin manually](#install-plugin-by-manually)
 	- [Config plugin](#config-plugin)
 	- [Install hypercli](#install-hypercli)
 - [Build plugin](#build-plugin)
@@ -21,7 +21,7 @@ This plugin provides common functions for integrate Jenkins with Hyper_.
 <!-- /TOC -->
 
 # Features
-Plugin currently support following features:
+Plugin currently supports the following features:
 
 - Install hyper cli
 - Set Hyper_ credentials
@@ -36,7 +36,7 @@ Plugin currently support following features:
 - hypercommon.hpi
 - Hyper_ credential
 
-## Install plugin by manually
+## Install plugin manually
 
 open Jenkins Web UI in web browser
 
@@ -48,7 +48,7 @@ Manage Jenkins -> Manage Plugins -> Advanced -> Upload Plugin
 
 ## Config plugin
 
-login https://console.hyper.sh to get a `Hyper_ credential`.
+login https://console.hyper.sh to receive a `Hyper_ credential`.
 
 ```
 Manage Jenkins -> Configure System -> Hyper Config
@@ -108,4 +108,3 @@ $ mvn install
 
 //skip test
 $ mvn install -DskipTests
-```
