@@ -39,7 +39,7 @@ Plugin currently support following features:
 
 open Jenkins Web UI in web browser
 
-get pre-build `hypercommon.hpi`
+get pre-build `hyper-commons.hpi`
 
 ```
 Manage Jenkins -> Manage Plugins -> Advanced -> Upload Plugin
@@ -89,7 +89,7 @@ $ mvn package -DskipTests
 
 ## Install
 
-> **target**: /.m2/repository/sh/hyper/plugins/hypercommon/1.0-SNAPSHOT/hypercommon-1.0-SNAPSHOT.hpi
+> **target**: ~/.m2/repository/sh/hyper/plugins/hyper-commons/0.1-SNAPSHOT/hyper-commons-0.1-SNAPSHOT.hpi
 
 compile + test + package + install
 
