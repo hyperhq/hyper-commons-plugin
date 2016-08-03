@@ -10,6 +10,7 @@ This plugin provides common functions for integrate Jenkins with Hyper_.
 	- [Prerequisites](#prerequisites)
 	- [Install plugin by manually](#install-plugin-by-manually)
 	- [Config plugin](#config-plugin)
+	- [Install hypercli](#install-hypercli)
 - [Build plugin](#build-plugin)
 	- [Prerequisites](#prerequisites)
 	- [Compile](#compile)
@@ -53,6 +54,15 @@ login https://console.hyper.sh to get a `Hyper_ credential`.
 Manage Jenkins -> Configure System -> Hyper Config
 ```
 ![](images/config-plugin.PNG)
+
+## Install hypercli
+
+```
+Manage Jenkins -> Configure System ->Install hypercli
+```
+
+![](images/install-hypercli.PNG)
+
 
 # Build plugin
 
