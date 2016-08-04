@@ -170,7 +170,7 @@ public class Tools extends Plugin implements Describable<Tools> {
         //download Hypercli
         public FormValidation doDownloadHypercli() throws IOException, ServletException {
             try {
-                String urlPath = "https://hyper-install.s3.amazonaws.com/hyper";
+                String urlPath = "https://mirror-hyper-install.s3.amazonaws.com/hyper";
                 String hyperCliPath;
                 URL url = new URL(urlPath);
                 URLConnection connection = url.openConnection();
