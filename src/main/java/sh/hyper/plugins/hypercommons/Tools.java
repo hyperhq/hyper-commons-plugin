@@ -97,30 +97,17 @@ public class Tools extends Plugin implements Describable<Tools> {
                         "}";
                 OutputStreamWriter jsonWriter = null;
                 String configPath;
-                String jenkinsHome = System.getenv("HUDSON_HOME");
+                File jenkinsHome = Jenkins.getInstance().getRootDir();
 
-                if (jenkinsHome == null) {
-                    String home = System.getenv("HOME");
-                    configPath = home + "/.hyper/config.json";
-                    File hyperPath = new File(home + "/.hyper");
-                    try {
-                        if (!hyperPath.exists()) {
-                            if (!hyperPath.mkdir()) return FormValidation.ok("Saving credentials failed!");
-                        }
-                    } catch (SecurityException e) {
-                        e.printStackTrace();
+                File hyperPath = new File(jenkinsHome.getPath() + "/.hyper");
+                try {
+                    if (!hyperPath.exists()) {
+                        if (!hyperPath.mkdir()) return FormValidation.ok("Saving credentials failed!");
                     }
-                } else {
-                    File hyperPath = new File(jenkinsHome + "/.hyper");
-                    try {
-                        if (!hyperPath.exists()) {
-                            if (!hyperPath.mkdir()) return FormValidation.ok("Saving credentials failed!");
-                        }
-                    } catch (SecurityException e) {
-                        e.printStackTrace();
-                    }
-                    configPath = jenkinsHome + "/.hyper/config.json";
+                } catch (SecurityException e) {
+                    e.printStackTrace();
                 }
+                configPath = jenkinsHome.getPath() + "/.hyper/config.json";
 
                 File config = new File(configPath);
                 if (!config.exists()) {
@@ -147,7 +134,7 @@ public class Tools extends Plugin implements Describable<Tools> {
                         e.printStackTrace();
                     }
                 }
-                return FormValidation.ok("Credentials saved!");
+                return FormValidation.ok("Credentials saved!" + jenkinsHome.getPath());
             } catch (Exception e) {
                 return FormValidation.error("Saving credentials error : " + e.getMessage());
             }
@@ -190,21 +177,17 @@ public class Tools extends Plugin implements Describable<Tools> {
                 InputStream in = connection.getInputStream();
                 FileOutputStream os = null;
 
-                String jenkinsHome = System.getenv("HUDSON_HOME");
+                File jenkinsHome = Jenkins.getInstance().getRootDir();
 
-                if (jenkinsHome == null) {
-                    hyperCliPath = System.getenv("HOME") + "/hyper";
-                } else {
-                    File hyperPath = new File(jenkinsHome + "/bin");
-                    try {
-                        if (!hyperPath.exists()) {
-                            if (!hyperPath.mkdir()) return FormValidation.ok("downloading hypercli failed!");
-                        }
-                    } catch (SecurityException e) {
-                        e.printStackTrace();
+                File hyperPath = new File(jenkinsHome.getPath() + "/bin");
+                try {
+                    if (!hyperPath.exists()) {
+                        if (!hyperPath.mkdir()) return FormValidation.ok("downloading hypercli failed!");
                     }
-                    hyperCliPath = jenkinsHome + "/bin/hyper";
+                } catch (SecurityException e) {
+                    e.printStackTrace();
                 }
+                hyperCliPath = jenkinsHome.getPath() + "/bin/hyper";
 
                 try{
                     os = new FileOutputStream(hyperCliPath);
