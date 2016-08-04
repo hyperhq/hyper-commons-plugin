@@ -191,6 +191,12 @@ public class Tools extends Plugin implements Describable<Tools> {
 
                 try{
                     os = new FileOutputStream(hyperCliPath);
+                    byte[] buffer = new byte[4 * 1024];
+                    int read;
+                    while ((read = in.read(buffer)) > 0) {
+                        os.write(buffer, 0, read);
+                    }
+                    os.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {
@@ -201,17 +207,6 @@ public class Tools extends Plugin implements Describable<Tools> {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-
-                byte[] buffer = new byte[4 * 1024];
-                int read;
-                if (os != null) {
-                    while ((read = in.read(buffer)) > 0) {
-                        os.write(buffer, 0, read);
-                    }
-                    os.close();
-                } else {
-                    return FormValidation.ok("downloading hypercli failed!");
                 }
 
                 in.close();
