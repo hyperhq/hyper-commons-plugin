@@ -134,7 +134,7 @@ public class Tools extends Plugin implements Describable<Tools> {
                         e.printStackTrace();
                     }
                 }
-                return FormValidation.ok("Credentials saved!" + jenkinsHome.getPath());
+                return FormValidation.ok("Credentials saved!");
             } catch (Exception e) {
                 return FormValidation.error("Saving credentials error : " + e.getMessage());
             }
