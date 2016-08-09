@@ -72,19 +72,8 @@ public class HyperToolInstaller extends ToolInstaller {
         if (nodeChannel == null) {
             throw new IllegalStateException("Node is offline");
         }
-//        String os = nodeChannel.call(new MasterToSlaveCallable<String, IOException>() {
-//            public String call() throws IOException {
-//                String os = System.getProperty("os.name").toLowerCase();
-//                String arch = System.getProperty("os.arch").contains("64") ? "x86_64" : "i386";
-//                if (os.contains("linux")) return "Linux/" + arch;
-//                if (os.contains("windows")) return "Windows/" + arch;
-//                if (os.contains("mac")) return "Darwin/" + arch;
-//                throw new IOException("Failed to determine OS architecture " + os + ":" + arch);
-//            }
-//        });
 
-        //final URL url = new URL("https://get.docker.com/builds/"+os+"/docker-"+version);
-        final URL url = new URL("https://raw.githubusercontent.com/docker/libnetwork/master/docs/cnm-model.jpg");
+        final URL url = new URL("https://hyper-install.s3.amazonaws.com/hyper-1.10-x86_64");
 
         FilePath install = preferredLocation(tool, node);
 
