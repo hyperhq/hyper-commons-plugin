@@ -39,7 +39,6 @@ import javax.servlet.ServletException;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 
 /**
