@@ -1,3 +1,6 @@
+#Deprecated
+Moved to https://github.com/jenkinsci/hyper-commons-plugin
+
 # hyper-commons-plugin
 =======================
 
